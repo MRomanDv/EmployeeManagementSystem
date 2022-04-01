@@ -57,7 +57,7 @@ app.delete('/delete/:id',(req,res)=>{
 
 
 //PORT
-const port = 3001
+const port = process.env.PORT || 3000
 app.listen(port,()=>{
     console.log('server is active on port: ' + port)
 })
