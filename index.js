@@ -34,8 +34,30 @@ app.get('/employees',(req,res)=> {
 })
 
 app.put('/update',(req,res)=>{
-    const {id,wage} = req.body
+    const {id,wage,age,position} = req.body
     db.query('UPDATE employees SET wage = ? WHERE id = ?', [wage,id],(err,results)=>{
+        if (err){
+            console.log(err)
+        }else {
+            res.send(results)
+        }
+    })
+})
+
+app.put('/updateAge',(req,res)=>{
+    const {id,age} = req.body
+    db.query('UPDATE employees SET age = ? WHERE id = ?', [age,id],(err,results)=>{
+        if (err){
+            console.log(err)
+        }else {
+            res.send(results)
+        }
+    })
+})
+
+app.put('/updatePosition',(req,res)=>{
+    const {id,position} = req.body
+    db.query('UPDATE employees SET position = ? WHERE id = ?', [position,id],(err,results)=>{
         if (err){
             console.log(err)
         }else {
@@ -57,7 +79,7 @@ app.delete('/delete/:id',(req,res)=>{
 
 
 //PORT
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
 app.listen(port,()=>{
     console.log('server is active on port: ' + port)
 })
