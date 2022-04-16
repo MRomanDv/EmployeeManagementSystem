@@ -33,8 +33,8 @@ app.get('/employees',(req,res)=> {
     })
 })
 
-app.put('/update',(req,res)=>{
-    const {id,wage,age,position} = req.body
+app.put('/update/:id',(req,res)=>{
+    const {id,wage} = req.body
     db.query('UPDATE employees SET wage = ? WHERE id = ?', [wage,id],(err,results)=>{
         if (err){
             console.log(err)
@@ -44,7 +44,7 @@ app.put('/update',(req,res)=>{
     })
 })
 
-app.put('/updateAge',(req,res)=>{
+app.put('/updateAge/:id',(req,res)=>{
     const {id,age} = req.body
     db.query('UPDATE employees SET age = ? WHERE id = ?', [age,id],(err,results)=>{
         if (err){
@@ -55,7 +55,7 @@ app.put('/updateAge',(req,res)=>{
     })
 })
 
-app.put('/updatePosition',(req,res)=>{
+app.put('/updatePosition/:id',(req,res)=>{
     const {id,position} = req.body
     db.query('UPDATE employees SET position = ? WHERE id = ?', [position,id],(err,results)=>{
         if (err){
@@ -65,6 +65,7 @@ app.put('/updatePosition',(req,res)=>{
         }
     })
 })
+
 
 app.delete('/delete/:id',(req,res)=>{
     const id = req.params.id
